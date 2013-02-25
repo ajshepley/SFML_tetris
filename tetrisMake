@@ -1,0 +1,22 @@
+## definitions
+
+     CC = g++
+     CCFLAGS = -Wall
+     PRJ = mine
+     OBJS = main.o
+
+     ## targets and prerequisites
+
+     $(PRJ): $(OBJS)             ## next line must begin with a TAB
+	      $(CC) $(OBJS) -o $(PRJ) -lsfml-graphics -lsfml-window -lsfml-system
+
+     # rule for compiling .cc to .o
+     %.o : %.cc                  ## next line must begin with a TAB
+	      $(CC) -c $(CCFLAGS) $< 
+
+     $(OBJS):$(HEAD)             ## no executable, the previous rule is used
+
+     .PHONY: clean
+     clean:                      ## next lines must begin with a TAB
+		  rm -f $(OBJS) $(PRJ)
+		  rm -f *~ *% *# .#*
